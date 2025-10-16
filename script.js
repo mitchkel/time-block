@@ -1,27 +1,15 @@
-class ThirtySecondTimer {
+class MinuteTimer {
     constructor() {
-        this.blocks = [];
+        this.completedMinutes = 0;
         this.currentSecond = 0;
         this.isRunning = false;
         this.intervalId = null;
-        this.totalSeconds = 30; // 30-second row
         
-        this.initializeBlocks();
+        this.minutesContainer = document.querySelector('.minutes-container');
+        this.currentMinuteRow = document.getElementById('current-minute');
+        this.minuteFill = document.getElementById('minute-fill');
+        
         this.startTimer();
-    }
-    
-    initializeBlocks() {
-        const container = document.getElementById('blocks-container');
-        container.innerHTML = '';
-        
-        for (let i = 0; i < this.totalSeconds; i++) {
-            const block = document.createElement('div');
-            block.className = 'time-block';
-            block.dataset.second = i;
-            block.title = `Second ${i + 1}`;
-            this.blocks.push(block);
-            container.appendChild(block);
-        }
     }
     
     startTimer() {
@@ -32,83 +20,86 @@ class ThirtySecondTimer {
     }
     
     updateTimer() {
-        // Clear previous current block
-        if (this.currentSecond > 0) {
-            this.blocks[this.currentSecond - 1].classList.remove('current');
-            this.blocks[this.currentSecond - 1].classList.add('filled');
-        }
+        this.currentSecond++;
         
-        // Update current block
-        if (this.currentSecond < this.totalSeconds) {
-            this.blocks[this.currentSecond].classList.add('current');
-            this.currentSecond++;
-        } else {
-            // Row completed - start next row automatically
-            this.completeRow();
+        // Update the fill width for current minute
+        const fillPercent = (this.currentSecond / 60) * 100;
+        this.minuteFill.style.width = `${fillPercent}%`;
+        
+        // Update time display
+        this.updateDisplay();
+        
+        // Check if minute is complete
+        if (this.currentSecond >= 60) {
+            this.completeMinute();
         }
+    }
+    
+    completeMinute() {
+        // Mark current minute as completed
+        this.currentMinuteRow.classList.add('completed');
+        
+        // Increment counter
+        this.completedMinutes++;
+        
+        // Create a new completed minute row above current
+        const completedRow = this.currentMinuteRow.cloneNode(true);
+        completedRow.querySelector('.minute-label').textContent = `Minute ${this.completedMinutes}`;
+        completedRow.querySelector('.minute-fill').style.width = '100%';
+        
+        // Insert the completed minute before the current minute
+        this.minutesContainer.insertBefore(completedRow, this.currentMinuteRow);
+        
+        // Reset current minute
+        this.resetCurrentMinute();
         
         this.updateDisplay();
+    }
+    
+    resetCurrentMinute() {
+        this.currentSecond = 0;
+        this.minuteFill.style.width = '0%';
+        this.currentMinuteRow.classList.remove('completed');
     }
     
     updateDisplay() {
         const timeDisplay = document.getElementById('time-display');
-        const filledCount = document.getElementById('filled-count');
+        const completedCount = document.getElementById('completed-count');
         
+        // Format as MM:SS
+        const minutes = this.completedMinutes;
         const seconds = this.currentSecond;
-        timeDisplay.textContent = `0:${seconds.toString().padStart(2, '0')}`;
-        filledCount.textContent = seconds;
-        
-        // Update row completion status
-        if (seconds === this.totalSeconds) {
-            timeDisplay.textContent = "Row Complete!";
-        }
+        timeDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        completedCount.textContent = this.completedMinutes;
     }
     
-    completeRow() {
+    resetAll() {
         clearInterval(this.intervalId);
-        this.isRunning = false;
-        console.log('30-second row completed!');
-        
-        // Visual feedback for completed row
-        this.blocks.forEach(block => {
-            block.style.animation = 'pulse 0.5s ease-in-out';
-        });
-        
-        // Auto-reset after a moment to simulate continuous flow
-        setTimeout(() => {
-            this.resetTimer();
-            this.startTimer();
-        }, 1500);
-    }
-    
-    resetTimer() {
-        clearInterval(this.intervalId);
+        this.completedMinutes = 0;
         this.currentSecond = 0;
-        this.blocks.forEach(block => {
-            block.className = 'time-block';
-            block.style.animation = '';
+        
+        // Remove all completed minutes
+        const allRows = this.minutesContainer.querySelectorAll('.minute-row');
+        allRows.forEach(row => {
+            if (row !== this.currentMinuteRow) {
+                row.remove();
+            }
         });
+        
+        // Reset current minute
+        this.resetCurrentMinute();
         this.updateDisplay();
+        
+        // Restart timer
+        this.startTimer();
     }
 }
 
-// Add CSS animation for row completion
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-        100% { transform: scale(1); }
-    }
-`;
-document.head.appendChild(style);
-
 // Initialize when page loads
 document.addEventListener('DOMContentLoaded', () => {
-    const timer = new ThirtySecondTimer();
+    const timer = new MinuteTimer();
     
     document.getElementById('reset-btn').addEventListener('click', () => {
-        timer.resetTimer();
-        timer.startTimer();
+        timer.resetAll();
     });
 });
