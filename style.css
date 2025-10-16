@@ -6,55 +6,70 @@ body {
 }
 
 .container {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
     background: white;
-    padding: 20px;
+    padding: 30px;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-.description {
+h1 {
     text-align: center;
-    margin: 10px 0;
-    color: #666;
-    font-size: 18px;
+    margin-bottom: 30px;
+    color: #333;
 }
 
 .minutes-container {
-    margin: 30px 0;
+    margin: 40px 0;
+    min-height: 400px;
 }
 
 .minute-row {
-    height: 40px;
-    background: #f0f0f0;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    margin-bottom: 8px;
-    position: relative;
-    overflow: hidden;
-}
-
-.minute-fill {
-    height: 100%;
-    background: linear-gradient(90deg, #4CAF50, #45a049);
-    width: 0%;
-    transition: width 1s linear;
-    border-radius: 6px;
-}
-
-.minute-label {
-    position: absolute;
-    top: 50%;
-    left: 10px;
-    transform: translateY(-50%);
-    font-weight: bold;
-    color: #333;
-    z-index: 2;
+    margin-bottom: 15px;
+    padding: 15px;
+    background: #fafafa;
+    border-radius: 10px;
+    border: 2px solid #e0e0e0;
 }
 
 .minute-row.completed {
     border-color: #4CAF50;
+    background: #f8fff8;
+}
+
+.blocks-container {
+    display: grid;
+    grid-template-columns: repeat(60, 1fr);
+    gap: 2px;
+    margin-bottom: 10px;
+    min-height: 30px;
+}
+
+.time-block {
+    height: 25px;
+    background: #e0e0e0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.time-block.current {
+    background: #2196F3;
+    border-color: #1976D2;
+    transform: scale(1.1);
+}
+
+.time-block.filled {
+    background: #4CAF50;
+    border-color: #388E3C;
+}
+
+.minute-label {
+    font-weight: bold;
+    color: #666;
+    font-size: 14px;
+    text-align: center;
 }
 
 .minute-row.completed .minute-label {
@@ -66,6 +81,8 @@ body {
     justify-content: space-between;
     align-items: center;
     margin: 30px 0;
+    padding-top: 20px;
+    border-top: 2px solid #eee;
 }
 
 #reset-btn {
@@ -86,23 +103,4 @@ body {
     font-weight: bold;
     font-size: 16px;
     color: #333;
-}
-
-.hierarchy {
-    margin-top: 30px;
-    padding: 20px;
-    background: #f8f9fa;
-    border-radius: 8px;
-    border-left: 4px solid #2196F3;
-}
-
-.hierarchy h3 {
-    margin-top: 0;
-    color: #333;
-}
-
-.hierarchy p {
-    margin: 8px 0;
-    color: #555;
-    font-size: 15px;
 }
