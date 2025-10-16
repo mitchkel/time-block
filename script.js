@@ -81,8 +81,6 @@ class MinuteTimer {
             block.classList.add('filled');
         });
         
-        completedRow.classList.add('completed');
-        
         // Insert the completed minute before the current minute
         this.minutesContainer.insertBefore(completedRow, this.currentMinuteRow);
         
@@ -95,7 +93,6 @@ class MinuteTimer {
     resetCurrentMinute() {
         this.currentSecond = 0;
         this.initializeCurrentMinute();
-        this.currentMinuteRow.classList.remove('completed');
     }
     
     updateDisplay() {
