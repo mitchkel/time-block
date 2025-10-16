@@ -67,17 +67,12 @@ class MinuteTimer {
     }
     
     completeMinute() {
-        // Mark current minute as completed
-        this.currentMinuteRow.classList.add('completed');
-        this.currentMinuteRow.querySelector('.minute-label').textContent = `Minute ${this.completedMinutes + 1}`;
-        
         // Increment counter
         this.completedMinutes++;
         
         // Create a new completed minute row above current
         const completedRow = this.currentMinuteRow.cloneNode(true);
         completedRow.id = ''; // Remove ID so we don't have duplicates
-        completedRow.classList.remove('completed'); // Will be re-added below
         
         // Make all blocks in the completed row green
         const completedBlocks = completedRow.querySelectorAll('.time-block');
@@ -101,7 +96,6 @@ class MinuteTimer {
         this.currentSecond = 0;
         this.initializeCurrentMinute();
         this.currentMinuteRow.classList.remove('completed');
-        this.currentMinuteRow.querySelector('.minute-label').textContent = 'Current Minute';
     }
     
     updateDisplay() {
