@@ -3,22 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Time Quilt - 1 Minute Rows</title>
+    <title>Time Quilt - Minute Blocks</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <h1>Time Flow: <span id="time-display">0:00</span></h1>
-        <div class="description">
-            <p>One complete row = 1 minute</p>
-        </div>
         
         <div class="minutes-container">
+            <!-- Completed minutes will appear here -->
             <div class="minute-row" id="current-minute">
-                <div class="minute-fill" id="minute-fill"></div>
+                <div class="blocks-container" id="current-blocks">
+                    <!-- 60 blocks will be generated here -->
+                </div>
                 <div class="minute-label">Current Minute</div>
             </div>
-            <!-- Completed minutes will be added here -->
         </div>
         
         <div class="controls">
@@ -27,15 +26,11 @@
                 Completed minutes: <span id="completed-count">0</span>
             </div>
         </div>
-
-        <div class="hierarchy">
-            <h3>Time Structure</h3>
-            <p>1 Row = 1 Minute</p>
-            <p>10 Rows = 10 Minutes</p>
-            <p>30 Rows = 30-Minute Chunk</p>
-            <p>60 Rows = 1 Hour</p>
-        </div>
     </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
     
     <script src="script.js"></script>
 </body>
