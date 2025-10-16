@@ -26,16 +26,7 @@ h1 {
 }
 
 .minute-row {
-    margin-bottom: 8px;
-    padding: 10px;
-    background: #fafafa;
-    border-radius: 8px;
-    border: 2px solid #e0e0e0;
-}
-
-.minute-row.completed {
-    border-color: #4CAF50;
-    background: #f8fff8;
+    margin-bottom: 2px; /* Much tighter spacing between minutes */
 }
 
 .blocks-container {
