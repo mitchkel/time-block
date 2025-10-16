@@ -26,10 +26,10 @@ h1 {
 }
 
 .minute-row {
-    margin-bottom: 15px;
-    padding: 15px;
+    margin-bottom: 8px;
+    padding: 10px;
     background: #fafafa;
-    border-radius: 10px;
+    border-radius: 8px;
     border: 2px solid #e0e0e0;
 }
 
@@ -41,39 +41,27 @@ h1 {
 .blocks-container {
     display: grid;
     grid-template-columns: repeat(60, 1fr);
-    gap: 2px;
-    margin-bottom: 10px;
-    min-height: 30px;
+    gap: 1px;
+    min-height: 20px;
 }
 
 .time-block {
-    height: 25px;
+    height: 20px;
     background: #e0e0e0;
     border: 1px solid #ccc;
-    border-radius: 3px;
+    border-radius: 2px;
     transition: all 0.3s ease;
 }
 
 .time-block.current {
     background: #2196F3;
     border-color: #1976D2;
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .time-block.filled {
     background: #4CAF50;
     border-color: #388E3C;
-}
-
-.minute-label {
-    font-weight: bold;
-    color: #666;
-    font-size: 14px;
-    text-align: center;
-}
-
-.minute-row.completed .minute-label {
-    color: #2E7D32;
 }
 
 .controls {
