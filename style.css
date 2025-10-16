@@ -18,57 +18,64 @@ body {
     text-align: center;
     margin: 10px 0;
     color: #666;
+    font-size: 18px;
 }
 
-.row-container {
+.minutes-container {
     margin: 30px 0;
-    padding: 20px;
-    background: #fafafa;
+}
+
+.minute-row {
+    height: 40px;
+    background: #f0f0f0;
+    border: 2px solid #ddd;
     border-radius: 8px;
-    border: 2px solid #e0e0e0;
+    margin-bottom: 8px;
+    position: relative;
+    overflow: hidden;
 }
 
-.blocks-row {
-    display: grid;
-    grid-template-columns: repeat(30, 1fr);
-    gap: 3px;
-    margin-bottom: 10px;
+.minute-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4CAF50, #45a049);
+    width: 0%;
+    transition: width 1s linear;
+    border-radius: 6px;
 }
 
-.time-block {
-    aspect-ratio: 1;
-    background: #e0e0e0;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    transition: all 0.3s ease;
+.minute-label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-weight: bold;
+    color: #333;
+    z-index: 2;
 }
 
-.time-block.filled {
-    background: #4CAF50;
-    border-color: #388E3C;
+.minute-row.completed {
+    border-color: #4CAF50;
 }
 
-.time-block.current {
-    background: #2196F3;
-    border-color: #1976D2;
-    transform: scale(1.1);
+.minute-row.completed .minute-label {
+    color: #2E7D32;
 }
 
 .controls {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 20px 0;
+    margin: 30px 0;
 }
 
 #reset-btn {
-    padding: 10px 20px;
+    padding: 12px 24px;
     background: #ff4444;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 #reset-btn:hover {
@@ -78,11 +85,12 @@ body {
 .stats {
     font-weight: bold;
     font-size: 16px;
+    color: #333;
 }
 
 .hierarchy {
     margin-top: 30px;
-    padding: 15px;
+    padding: 20px;
     background: #f8f9fa;
     border-radius: 8px;
     border-left: 4px solid #2196F3;
@@ -94,6 +102,7 @@ body {
 }
 
 .hierarchy p {
-    margin: 5px 0;
+    margin: 8px 0;
     color: #555;
+    font-size: 15px;
 }
