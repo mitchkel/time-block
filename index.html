@@ -2,20 +2,72 @@
 <html>
 <head>
     <title>Time Block Clock</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <style>
         body { 
             margin: 0; 
+            padding: 10px;
+            background: #f5f5f5;
             height: 100vh;
+            overflow: hidden; /* Prevent body scrolling */
+        }
+        .mobile-notice {
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+            color: #666;
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            display: none; /* Hidden by default */
+        }
+        .container {
+            width: 100%;
+            height: calc(100vh - 20px);
+            overflow: auto; /* Allow scrolling within container */
+            -webkit-overflow-scrolling: touch; /* Smooth iOS scrolling */
         }
         iframe {
             width: 100%;
-            height: 100vh;
+            height: 3000px; /* Tall enough for all epochs */
             border: none;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        /* Show mobile notice on small screens */
+        @media (max-width: 768px) {
+            .mobile-notice {
+                display: block;
+            }
+            body {
+                padding: 5px;
+            }
+            iframe {
+                height: 3200px; /* Even taller for mobile */
+            }
+        }
+        
+        /* Very small screens */
+        @media (max-width: 480px) {
+            iframe {
+                height: 3400px;
+            }
+            .mobile-notice {
+                font-size: 12px;
+                padding: 8px;
+            }
         }
     </style>
 </head>
 <body>
-    <iframe width="100%" height="500" frameborder="0"
-  src="https://observablehq.com/embed/c386347e3fdb4aea@259?cell=*&api_key=de0fefad6e75212b9f29b03cfe8e04314101ada1"></iframe>
+    <div class="mobile-notice">
+        💡 Pinch to zoom • Scroll to see all epochs
+    </div>
+    <div class="container">
+        <iframe src="https://observablehq.com/embed/c386347e3fdb4aea@259?cell=*&api_key=de0fefad6e75212b9f29b03cfe8e04314101ada1"></iframe>
+    </div>
 </body>
 </html>
