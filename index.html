@@ -4,46 +4,30 @@
     <title>Time Block Clock</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body { 
-            margin: 0; 
             padding: 10px;
             background: #f5f5f5;
-            overflow: auto; /* Enable body scrolling */
-        }
-        .mobile-notice {
-            text-align: center;
-            padding: 10px;
-            font-size: 14px;
-            color: #666;
-            background: #fff3cd;
-            border: 1px solid #ffeaa7;
-            border-radius: 4px;
-            margin-bottom: 10px;
+            min-height: 100vh;
+            overflow-x: auto;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         iframe {
-            width: 1500px; /* Wide enough to show all content */
-            height: 3000px; /* Tall enough for all epochs */
+            width: 1600px;
+            height: 3200px;
             border: none;
             background: white;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-        
-        /* Show mobile notice on small screens */
-        @media (max-width: 768px) {
-            .mobile-notice {
-                display: block;
-            }
-            body {
-                padding: 5px;
-            }
-        }
     </style>
 </head>
 <body>
-    <div class="mobile-notice">
-        💡 Scroll horizontally and vertically • Pinch to zoom if needed
-    </div>
     <iframe src="https://observablehq.com/embed/c386347e3fdb4aea@259?cell=*&api_key=de0fefad6e75212b9f29b03cfe8e04314101ada1"></iframe>
 </body>
 </html>
